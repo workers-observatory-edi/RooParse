@@ -1,0 +1,38 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"		 
+			 xmlns:vm="clr-namespace:RiderParseMvvm.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:rxui="https://reactiveui.net"
+             mc:Ignorable="d"  
+             xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+             xmlns:models="clr-namespace:RiderParseMvvm.Models"
+			 xmlns:assist="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+             xmlns:conv="clr-namespace:RiderParse.Avalonia.Converters"
+             x:Class="RiderParse.Avalonia.Pages.About" >
+  <UserControl.Resources>
+    <conv:EnumDescriptionConverter x:Key="GetDescription"/>
+  </UserControl.Resources>
+    <StackPanel Margin="16, 0" MaxWidth="600">
+      <StackPanel.Styles>
+        <Style Selector="TextBlock.Content, TextBlock.Subheadline">
+          <Setter Property="HorizontalAlignment" Value="Stretch"/>
+          <Setter Property="TextAlignment" Value="Center"/>
+          <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+      </StackPanel.Styles>
+      <TextBlock Classes="Headline4 Subheadline" Text="About" Margin="0,20,0,20"/>		
+      <StackPanel Margin="5,15,5,10">
+        <StackPanel.Styles>
+          <Style Selector="Button">
+            <Setter Property="Margin" Value="5,10,5,10"/>
+          </Style>
+        </StackPanel.Styles>
+        <StackPanel HorizontalAlignment="Center" MaxWidth="600" >
+			<StackPanel.Styles>
+			</StackPanel.Styles>
+			<Button Classes="Outline" Content="Back" Command="{Binding HostScreen.GoBack}" Margin="0,25,0,0" />
+        </StackPanel>
+      </StackPanel>
+    </StackPanel>
+</UserControl>

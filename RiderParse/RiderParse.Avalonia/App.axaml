@@ -1,0 +1,13 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             xmlns:local="clr-namespace:RiderParse.Avalonia"	 
+             x:Class="RiderParse.Avalonia.App">
+	<Application.Resources>
+		<themes:BundledTheme BaseTheme="Light" PrimaryColor="Teal" SecondaryColor="Amber"/>
+	</Application.Resources>
+	<Application.Styles>
+		<StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Templates.xaml" />
+		<StyleInclude Source="avares://Material.DataGrid/DataGrid.xaml"/>
+	</Application.Styles>
+</Application>

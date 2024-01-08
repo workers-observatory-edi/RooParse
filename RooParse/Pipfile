@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+pandas = "*"
+pdfminer = "*"
+pillow = "*"
+plotnine = "*"
+mizani = "*"
+matplotlib = "==3.3.4"
+pyinstaller = "==4.5.1"
+openpyxl = "==3.0.9"
+
+[requires]
+python_version = "3.7.9"

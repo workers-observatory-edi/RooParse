@@ -1,0 +1,125 @@
+<Window x:Class="RiderParse.Avalonia.Views.MainWindow"
+        xmlns="https://github.com/avaloniaui"
+		xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:vm="clr-namespace:RiderParseMvvm.ViewModels"
+        xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+        xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+        xmlns:pages="clr-namespace:RiderParse.Avalonia.Pages"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Width="720" Height="720" MinWidth="480"
+        Title="RiderParse">
+    <Window.Styles>
+        <Style Selector="TextBlock.Subheadline">
+            <Setter Property="Margin" Value="0, 16" />
+        </Style>
+        <Style Selector="TextBlock.Subheadline2">
+            <Setter Property="Margin" Value="0, 8" />
+        </Style>
+        <Style Selector="TextBlock.Content">
+            <Setter Property="Margin" Value="0, 4" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+    </Window.Styles>
+
+    <styles:SnackbarHost HostName="Root">
+        <styles:NavigationDrawer Name="LeftDrawer"
+                                 LeftDrawerOpened="{Binding ElementName=NavDrawerSwitch, Path=IsChecked, Mode=TwoWay}">
+            <styles:NavigationDrawer.LeftDrawerContent>
+                <ScrollViewer>
+                    <StackPanel>
+                        <styles:ColorZone Mode="Accent" Height="90">
+                            <StackPanel Margin="0,20,0,20">
+                                <TextBlock Classes="Headline6" Text="RiderParse" HorizontalAlignment="Center" />
+                                <TextBlock Classes="Subtitle1" Text="by Workers' Observatory" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </styles:ColorZone>
+                        <ListBox Classes="Drawer" Name="DrawerList"
+                                 Focusable="{Binding ElementName=LeftDrawer, Path=LeftDrawerOpened}">
+                            <ListBox.Styles>
+                                <Style Selector="ListBoxItem">
+                                    <Setter Property="Height" Value="48" />
+                                    <Setter Property="Padding" Value="16,0" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="IsEnabled" Value="{Binding $self.Content.IsEnabled}" />
+                                </Style>
+                            </ListBox.Styles>
+                            <TextBlock Classes="Body2" Text="Home" Name="Home" />
+							<TextBlock Classes="Body2" Text="Analysis" Name="Analysis" />
+							<TextBlock Classes="Body2" Text="Help" Name="Help" />
+							<TextBlock Classes="Body2" Text="Settings" Name="Settings" />
+							<TextBlock Classes="Body2" Text="About" Name="About" />
+                        </ListBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </styles:NavigationDrawer.LeftDrawerContent>
+            <DockPanel LastChildFill="true">
+                <styles:ColorZone Name="PART_AppBarContainer" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                  DockPanel.Dock="Top"
+                                  Height="56" Mode="PrimaryMid" ZIndex="1">
+                    <Grid Margin="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="24" />
+                            <ColumnDefinition Width="32" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="32" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ToggleButton Name="NavDrawerSwitch"
+                                      Classes="Flat TransparentBack ConstantForeground ImplicitForeground"
+                                      Width="32" Height="32" Padding="4">
+                            <avalonia:MaterialIcon Kind="Menu" Width="24" Height="24" />
+                        </ToggleButton>
+                        <TextBlock Grid.Column="2" Classes="Headline6" Text="{Binding CurrentPage}"
+                                   VerticalAlignment="Center" />
+                        <Menu Grid.Column="4" Height="32" Padding="0" Margin="0">
+                            <MenuItem Height="32" Width="32" Header="{avalonia:MaterialIconExt DotsVertical, Size=24}">
+                                <MenuItem Header="Hello!">
+                                    <MenuItem.Icon>
+                                        <avalonia:MaterialIcon Kind="Hand" Width="24" Height="24" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <Separator />
+                                <MenuItem Header="Action 1" />
+                                <MenuItem Header="Action 2" />
+                                <MenuItem Header="Action 3" />
+                                <Separator />
+                                <MenuItem Header="Goodbye">
+                                    <MenuItem.Icon>
+                                        <avalonia:MaterialIcon Kind="ExitRun" Width="24" Height="24" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </MenuItem>
+                        </Menu>
+                    </Grid>
+                </styles:ColorZone>
+                <ScrollViewer Name="mainScroller"
+                              DockPanel.Dock="Top"
+                              HorizontalContentAlignment="Stretch"
+                              HorizontalAlignment="Stretch"
+                              HorizontalScrollBarVisibility="Disabled">
+                    <Border HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+						<rxui:RoutedViewHost
+							Grid.Row="0"
+							x:Name="RoutedViewHost"
+							Router="{Binding Router}">
+						</rxui:RoutedViewHost>
+                    </Border>
+                </ScrollViewer>
+				<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15">
+					<StackPanel.Styles>
+						<Style Selector="StackPanel > :is(Control)">
+							<Setter Property="Margin" Value="2"/>
+						</Style>
+						<Style Selector="StackPanel > TextBlock">
+							<Setter Property="VerticalAlignment" Value="Center"/>
+						</Style>
+					</StackPanel.Styles>
+				</StackPanel>
+            </DockPanel>
+        </styles:NavigationDrawer>
+    </styles:SnackbarHost>
+</Window>

@@ -1,0 +1,54 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="clr-namespace:RiderParseMvvm.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:rxui="https://reactiveui.net"
+             mc:Ignorable="d"  
+             xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+             xmlns:models="clr-namespace:RiderParseMvvm.Models"
+			 xmlns:assist="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+             xmlns:conv="clr-namespace:RiderParse.Avalonia.Converters"
+             x:Class="RiderParse.Avalonia.Pages.Home" >
+  <UserControl.Resources>
+    <conv:EnumDescriptionConverter x:Key="GetDescription"/>
+  </UserControl.Resources>
+    <StackPanel Margin="16, 0" MaxWidth="600">
+      <StackPanel.Styles>
+        <Style Selector="TextBlock.Content, TextBlock.Subheadline">
+          <Setter Property="HorizontalAlignment" Value="Stretch"/>
+          <Setter Property="TextAlignment" Value="Center"/>
+          <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+      </StackPanel.Styles>
+      <Image Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"
+              Source="avares://RiderParse.Avalonia/Assets/logo_nocircle.png" Margin="0,20,0,20"/>
+      <TextBlock Classes="Headline4 Subheadline" Text="RiderParse"/>
+        <TextBlock Classes="Content" Text=" "/>
+      <TextBlock Classes="Content" Text="RiderParse is a tool that allows workers in the gig economy to easily summarise data about their earnings from payslips."/>
+        <TextBlock Classes="Content" Text=" "/>
+        <TextBlock Classes="Content" Text="Currently supported payslips from Deliveroo UK, with more courier services planned to be added in the near future."/>
+        <TextBlock Classes="Content" Text=" "/>
+        <TextBlock Classes="Content" Text="RiderParse helps you quickly gain insights about your working conditions, such as how your hourly earnings vary in the short and long-term, and how working a gig economy job compares to hourly wage employment."/>
+		
+      <StackPanel Margin="5,15,5,10">
+        <StackPanel.Styles>
+          <Style Selector="Button">
+            <Setter Property="Margin" Value="5,10,5,10"/>
+          </Style>
+        </StackPanel.Styles>
+        <WrapPanel HorizontalAlignment="Center" MaxWidth="600" >
+			<Button Content="Get started" ToolTip.Tip='Start analysing your data.' assist:ButtonAssist.CornerRadius="16"
+					Command="{Binding HostScreen.GoToPage}" CommandParameter="Analysis"/>
+        </WrapPanel>
+        <WrapPanel HorizontalAlignment="Center" MaxWidth="600" >
+          <Button Classes="Flat" Content="HELP"
+				  Command="{Binding HostScreen.GoToPage}" CommandParameter="Help"/>
+          <Button Classes="Flat" Content="SETTINGS"
+				  Command="{Binding HostScreen.GoToPage}" CommandParameter="Settings"/>
+          <Button Classes="Flat" Content="ABOUT RIDERPARSE"
+				  Command="{Binding HostScreen.GoToPage}" CommandParameter="About"/>
+        </WrapPanel>
+      </StackPanel>
+    </StackPanel>
+</UserControl>
